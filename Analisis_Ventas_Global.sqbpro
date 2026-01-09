@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="Analisis_Ventas_Global.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1868"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><table title="Dim_Clientes" custom_title="0" dock_id="1" table="4,12:mainDim_Clientes"/><dock_state state="000000ff00000000fd00000001000000020000000000000000fc0100000001fb000000160064006f0063006b00420072006f00770073006500310100000000ffffffff0000010100ffffff000000000000000000000004000000040000000800000008fc00000000"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1*">SELECT 
+    p.Nombre_Producto,
+    p.Categoria,
+    SUM(v.Cantidad) AS Unidades_Vendidas,
+    ROUND(SUM(v.Monto_Total), 2) AS Ingresos_Totales,
+    -- Calculamos el beneficio: (Ingreso - (Costo * Cantidad))
+    ROUND(SUM(v.Monto_Total - (p.Costo_Unitario * v.Cantidad)), 2) AS Beneficio_Neto,
+    -- Calculamos el % de margen promedio
+    ROUND(AVG((v.Monto_Total - (p.Costo_Unitario * v.Cantidad)) / v.Monto_Total * 100), 2) || '%' AS Margen_Promedio
+FROM Hechos_Ventas AS v
+INNER JOIN Dim_Productos AS p ON v.ID_Producto = p.ID_Producto
+GROUP BY p.Nombre_Producto
+ORDER BY Beneficio_Neto DESC;</sql><current_tab id="0"/></tab_sql></sqlb_project>
