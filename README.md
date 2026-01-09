@@ -1,6 +1,6 @@
 # Global-Sales-Data-Warehouse
 Arquitectura de datos SQL y Business Intelligence para el análisis de +3M de transacciones internacionales.
-# ¡Hola! Soy [Tu Nombre] 👋
+# ¡Hola! Soy Nil 👋
 ### Business Intelligence & International Business Specialist
 
 Me apasiona transformar datos complejos en decisiones estratégicas. Actualmente me especializo en **Arquitectura de Datos y SQL** para mercados globales.
